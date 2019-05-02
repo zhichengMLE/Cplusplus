@@ -5,33 +5,48 @@ class Area
 {
     private:
        int length;
-       int breadth;
+       int width;
 
     public:
        // Constructor
-       Area(): length(5), breadth(2){ }
+       Area(): length(5), width(2){ }
+
+       Area(int length, int width): length(length), width(width){ }
 
        void GetLength()
        {
            cout << "Enter length and breadth respectively: ";
-           cin >> length >> breadth;
+           cin >> length >> width;
        }
 
-       int AreaCalculation() {  return (length * breadth);  }
+       int AreaCalculation() {  return (length * width);  }
 
        void DisplayArea(int temp)
        {
-           cout << "Area: " << temp;
+           cout << "Area: " << temp << endl;
+       }
+
+       Area operator +(Area const &obj){
+            Area res;
+            res.length = length + obj.length;
+            res.width = width + obj.width;
+            return res;
        }
 };
 
 int main()
 {
-    Area area;
-    int temp;
+    Area a1;
+    Area a2(3, 3);
 
-    temp = area.AreaCalculation();
-    area.DisplayArea(temp);
+    a1.DisplayArea(a1.AreaCalculation());
+    a2.DisplayArea(a2.AreaCalculation());
 
     return 0;
 }
+
+
+/*
+Area: 10
+Area: 9
+*/
